@@ -1,52 +1,9 @@
 package shared
 
-import (
-	"fmt"
-	"strings"
-)
+func GetQueryOrgs(repoNames []string) string { _ = "STUB: not implemented"; return "" }
 
-func GetQueryOrgs(repoNames []string) string {
-	var repos strings.Builder
-	for _, name := range repoNames {
-		fmt.Fprintf(&repos, "org:%s ", strings.Split(name, "/")[0])
-	}
-	return strings.TrimSpace(repos.String())
-}
+func GetQueryRepos(repoNames []string) string { _ = "STUB: not implemented"; return "" }
 
-func GetQueryRepos(repoNames []string) string {
-	var repos strings.Builder
-	for _, name := range repoNames {
-		fmt.Fprintf(&repos, "repo:%s ", name)
-	}
-	return strings.TrimSpace(repos.String())
-}
+func GetQueryHashes(branches []Branch) []string { _ = "STUB: not implemented"; return nil }
 
-func GetQueryHashes(branches []Branch) []string {
-	results := []string{}
-
-	var hashes strings.Builder
-	for i, branch := range branches {
-		if len(branch.Commits) == 0 {
-			continue
-		}
-
-		separator := " "
-		if i == len(branches)-1 {
-			separator = ""
-		}
-		hash := fmt.Sprintf("hash:%s%s", branch.Commits[len(branch.Commits)-1], separator)
-
-		// https://docs.github.com/en/rest/reference/search#limitations-on-query-length
-		if len(hashes.String())+len(hash) > 256 {
-			results = append(results, hashes.String())
-			hashes.Reset()
-		}
-
-		hashes.WriteString(hash)
-	}
-	if len(hashes.String()) > 0 {
-		results = append(results, hashes.String())
-	}
-
-	return results
-}
+// https://docs.github.com/en/rest/reference/search#limitations-on-query-length

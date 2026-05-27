@@ -11,7 +11,6 @@ package mocks
 
 import (
 	context "context"
-	reflect "reflect"
 
 	gomock "go.uber.org/mock/gomock"
 )
@@ -30,257 +29,205 @@ type MockConnectionMockRecorder struct {
 
 // NewMockConnection creates a new mock instance.
 func NewMockConnection(ctrl *gomock.Controller) *MockConnection {
-	mock := &MockConnection{ctrl: ctrl}
-	mock.recorder = &MockConnectionMockRecorder{mock}
-	return mock
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockConnection) EXPECT() *MockConnectionMockRecorder {
-	return m.recorder
+	_ = "STUB: not implemented"
+
+	// AddConfig mocks base method.
+	return nil
 }
 
-// AddConfig mocks base method.
 func (m *MockConnection) AddConfig(ctx context.Context, key, value string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AddConfig", ctx, key, value)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // AddConfig indicates an expected call of AddConfig.
 func (mr *MockConnectionMockRecorder) AddConfig(ctx, key, value any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddConfig", reflect.TypeOf((*MockConnection)(nil).AddConfig), ctx, key, value)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CheckoutBranch mocks base method.
 func (m *MockConnection) CheckoutBranch(ctx context.Context, branchName string, detach bool) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CheckoutBranch", ctx, branchName, detach)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // CheckoutBranch indicates an expected call of CheckoutBranch.
 func (mr *MockConnectionMockRecorder) CheckoutBranch(ctx, branchName, detach any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckoutBranch", reflect.TypeOf((*MockConnection)(nil).CheckoutBranch), ctx, branchName, detach)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // DeleteBranches mocks base method.
 func (m *MockConnection) DeleteBranches(ctx context.Context, branchNames []string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteBranches", ctx, branchNames)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // DeleteBranches indicates an expected call of DeleteBranches.
 func (mr *MockConnectionMockRecorder) DeleteBranches(ctx, branchNames any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteBranches", reflect.TypeOf((*MockConnection)(nil).DeleteBranches), ctx, branchNames)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAssociatedRefNames mocks base method.
 func (m *MockConnection) GetAssociatedRefNames(ctx context.Context, oid string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAssociatedRefNames", ctx, oid)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetAssociatedRefNames indicates an expected call of GetAssociatedRefNames.
 func (mr *MockConnectionMockRecorder) GetAssociatedRefNames(ctx, oid any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAssociatedRefNames", reflect.TypeOf((*MockConnection)(nil).GetAssociatedRefNames), ctx, oid)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetBranchNames mocks base method.
 func (m *MockConnection) GetBranchNames(ctx context.Context) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetBranchNames", ctx)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetBranchNames indicates an expected call of GetBranchNames.
 func (mr *MockConnectionMockRecorder) GetBranchNames(ctx any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBranchNames", reflect.TypeOf((*MockConnection)(nil).GetBranchNames), ctx)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetConfig mocks base method.
 func (m *MockConnection) GetConfig(ctx context.Context, key string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetConfig", ctx, key)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetConfig indicates an expected call of GetConfig.
 func (mr *MockConnectionMockRecorder) GetConfig(ctx, key any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetConfig", reflect.TypeOf((*MockConnection)(nil).GetConfig), ctx, key)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetLog mocks base method.
 func (m *MockConnection) GetLog(ctx context.Context, branchName string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetLog", ctx, branchName)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetLog indicates an expected call of GetLog.
 func (mr *MockConnectionMockRecorder) GetLog(ctx, branchName any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLog", reflect.TypeOf((*MockConnection)(nil).GetLog), ctx, branchName)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetMergedBranchNames mocks base method.
 func (m *MockConnection) GetMergedBranchNames(ctx context.Context, remoteName, branchName string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetMergedBranchNames", ctx, remoteName, branchName)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetMergedBranchNames indicates an expected call of GetMergedBranchNames.
 func (mr *MockConnectionMockRecorder) GetMergedBranchNames(ctx, remoteName, branchName any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetMergedBranchNames", reflect.TypeOf((*MockConnection)(nil).GetMergedBranchNames), ctx, remoteName, branchName)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetPullRequests mocks base method.
 func (m *MockConnection) GetPullRequests(ctx context.Context, hostname, orgs, repos, queryHashes string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetPullRequests", ctx, hostname, orgs, repos, queryHashes)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetPullRequests indicates an expected call of GetPullRequests.
 func (mr *MockConnectionMockRecorder) GetPullRequests(ctx, hostname, orgs, repos, queryHashes any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPullRequests", reflect.TypeOf((*MockConnection)(nil).GetPullRequests), ctx, hostname, orgs, repos, queryHashes)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRemoteNames mocks base method.
 func (m *MockConnection) GetRemoteNames(ctx context.Context) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetRemoteNames", ctx)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetRemoteNames indicates an expected call of GetRemoteNames.
 func (mr *MockConnectionMockRecorder) GetRemoteNames(ctx any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRemoteNames", reflect.TypeOf((*MockConnection)(nil).GetRemoteNames), ctx)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRepoNames mocks base method.
 func (m *MockConnection) GetRepoNames(ctx context.Context, hostname, repoName string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetRepoNames", ctx, hostname, repoName)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetRepoNames indicates an expected call of GetRepoNames.
 func (mr *MockConnectionMockRecorder) GetRepoNames(ctx, hostname, repoName any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepoNames", reflect.TypeOf((*MockConnection)(nil).GetRepoNames), ctx, hostname, repoName)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetSshConfig mocks base method.
 func (m *MockConnection) GetSshConfig(ctx context.Context, name string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetSshConfig", ctx, name)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetSshConfig indicates an expected call of GetSshConfig.
 func (mr *MockConnectionMockRecorder) GetSshConfig(ctx, name any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSshConfig", reflect.TypeOf((*MockConnection)(nil).GetSshConfig), ctx, name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetUncommittedChanges mocks base method.
 func (m *MockConnection) GetUncommittedChanges(ctx context.Context, opts ...string) (string, error) {
-	m.ctrl.T.Helper()
-	varargs := []any{ctx}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetUncommittedChanges", varargs...)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetUncommittedChanges indicates an expected call of GetUncommittedChanges.
 func (mr *MockConnectionMockRecorder) GetUncommittedChanges(ctx any, opts ...any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{ctx}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUncommittedChanges", reflect.TypeOf((*MockConnection)(nil).GetUncommittedChanges), varargs...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetWorktrees mocks base method.
 func (m *MockConnection) GetWorktrees(ctx context.Context) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetWorktrees", ctx)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetWorktrees indicates an expected call of GetWorktrees.
 func (mr *MockConnectionMockRecorder) GetWorktrees(ctx any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetWorktrees", reflect.TypeOf((*MockConnection)(nil).GetWorktrees), ctx)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RemoveConfig mocks base method.
 func (m *MockConnection) RemoveConfig(ctx context.Context, key string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RemoveConfig", ctx, key)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // RemoveConfig indicates an expected call of RemoveConfig.
 func (mr *MockConnectionMockRecorder) RemoveConfig(ctx, key any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveConfig", reflect.TypeOf((*MockConnection)(nil).RemoveConfig), ctx, key)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RemoveWorktree mocks base method.
 func (m *MockConnection) RemoveWorktree(ctx context.Context, path string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RemoveWorktree", ctx, path)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // RemoveWorktree indicates an expected call of RemoveWorktree.
 func (mr *MockConnectionMockRecorder) RemoveWorktree(ctx, path any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveWorktree", reflect.TypeOf((*MockConnection)(nil).RemoveWorktree), ctx, path)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -37,10 +37,6 @@ const (
 
 var detachedBranchNameRegex = regexp.MustCompile(`^\(.+\)`)
 
-func (b Branch) IsDetached() bool {
-	return detachedBranchNameRegex.MatchString(b.Name)
-}
+func (b Branch) IsDetached() bool { _ = "STUB: not implemented"; return false }
 
-func (uc *UncommittedChange) IsUntracked() bool {
-	return uc.Y == "?"
-}
+func (uc *UncommittedChange) IsUntracked() bool { _ = "STUB: not implemented"; return false }

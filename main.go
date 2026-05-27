@@ -1,20 +1,11 @@
 package main
 
 import (
-	"context"
-	"errors"
 	"flag"
 	"fmt"
 	"os"
-	"os/signal"
-	"slices"
-	"time"
 
-	"github.com/briandowns/spinner"
 	"github.com/fatih/color"
-	"github.com/seachicken/gh-poi/cmd"
-	"github.com/seachicken/gh-poi/cmd/lock"
-	"github.com/seachicken/gh-poi/conn"
 	"github.com/seachicken/gh-poi/shared"
 )
 
@@ -32,27 +23,13 @@ const (
 	Merged StateFlag = "merged"
 )
 
-func (s *StateFlag) String() string {
-	return string(*s)
-}
+func (s *StateFlag) String() string { _ = "STUB: not implemented"; return "" }
 
-func (s *StateFlag) Set(value string) error {
-	for _, state := range []StateFlag{Closed, Merged} {
-		if value == string(state) {
-			*s = StateFlag(value)
-			return nil
-		}
-	}
-	return errors.New("invalid state")
-}
+func (s *StateFlag) Set(value string) error { _ = "STUB: not implemented"; return nil }
 
 func (s StateFlag) toModel() shared.PullRequestState {
-	switch s {
-	case Closed:
-		return shared.Closed
-	default:
-		return shared.Merged
-	}
+	_ = "STUB: not implemented"
+	return *new(shared.PullRequestState)
 }
 
 type ScanFlag string
@@ -62,27 +39,13 @@ const (
 	Deep  ScanFlag = "deep"
 )
 
-func (s *ScanFlag) String() string {
-	return string(*s)
-}
+func (s *ScanFlag) String() string { _ = "STUB: not implemented"; return "" }
 
-func (s *ScanFlag) Set(value string) error {
-	for _, mode := range []ScanFlag{Quick, Deep} {
-		if value == string(mode) {
-			*s = ScanFlag(value)
-			return nil
-		}
-	}
-	return errors.New("invalid scan mode")
-}
+func (s *ScanFlag) Set(value string) error { _ = "STUB: not implemented"; return nil }
 
 func (s ScanFlag) toModel() shared.ScanMode {
-	switch s {
-	case Deep:
-		return shared.Deep
-	default:
-		return shared.Quick
-	}
+	_ = "STUB: not implemented"
+	return *new(shared.ScanMode)
 }
 
 func main() {
@@ -160,197 +123,24 @@ func main() {
 }
 
 func runMain(state StateFlag, scan ScanFlag, dryRun bool, debug bool) {
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
-	defer stop()
-
-	if dryRun {
-		fmt.Fprintf(color.Output, "%s\n", bold("== DRY RUN =="))
-	}
-
-	connection := &conn.Connection{Debug: debug}
-	sp := spinner.New(spinner.CharSets[14], 40*time.Millisecond)
-	defer sp.Stop()
-
-	fetchingMsg := " Fetching pull requests..."
-	sp.Suffix = fetchingMsg
-	if !debug {
-		sp.Start()
-	}
-	var fetchingErr error
-
-	remotes, err := cmd.GetPreferredRemotes(ctx, connection, scan.toModel())
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
-
-	branches, fetchingErr := cmd.GetBranches(ctx, remotes, connection, state.toModel(), scan.toModel(), dryRun)
-
-	sp.Stop()
-
-	if fetchingErr == nil {
-		fmt.Fprintf(color.Output, "%s%s\n", green("✔"), fetchingMsg)
-	} else {
-		fmt.Fprintf(color.Output, "%s%s\n", red("✕"), fetchingMsg)
-		fmt.Fprintln(os.Stderr, fetchingErr)
-		return
-	}
-
-	deletingMsg := " Deleting branches..."
-
-	if dryRun {
-		fmt.Fprintf(color.Output, "%s%s\n", hiBlack("-"), deletingMsg)
-	} else {
-		sp.Suffix = deletingMsg
-		if !debug {
-			sp.Restart()
-		}
-
-		var deletingErr error
-		branches, deletingErr = cmd.DeleteBranches(ctx, branches, connection)
-		connection.PruneRemoteBranches(ctx, remotes[0].Name)
-
-		sp.Stop()
-
-		if deletingErr == nil {
-			fmt.Fprintf(color.Output, "%s%s\n", green("✔"), deletingMsg)
-		} else {
-			fmt.Fprintf(color.Output, "%s%s\n", red("✕"), deletingMsg)
-			fmt.Fprintln(os.Stderr, deletingErr)
-			return
-		}
-	}
-
-	fmt.Println()
-
-	var deletedStates []shared.BranchState
-	var notDeletedStates []shared.BranchState
-	if dryRun {
-		deletedStates = []shared.BranchState{shared.Deletable}
-		notDeletedStates = []shared.BranchState{shared.NotDeletable}
-	} else {
-		deletedStates = []shared.BranchState{shared.Deleted}
-		notDeletedStates = []shared.BranchState{shared.Deletable, shared.NotDeletable}
-	}
-
-	fmt.Fprintf(color.Output, "%s\n", bold("Deleted branches"))
-	printBranches(getBranches(branches, deletedStates))
-	fmt.Println()
-
-	fmt.Fprintf(color.Output, "%s\n", bold("Branches not deleted"))
-	printBranches(getBranches(branches, notDeletedStates))
-	fmt.Println()
+	_ = "STUB: not implemented"
+	return
 }
 
-func runLock(branchNames []string, debug bool) {
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
-	defer stop()
+func runLock(branchNames []string, debug bool) { _ = "STUB: not implemented"; return }
 
-	connection := &conn.Connection{Debug: debug}
+func runUnlock(branchNames []string, debug bool) { _ = "STUB: not implemented"; return }
 
-	err := lock.LockBranches(ctx, branchNames, connection)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
-}
+func printBranches(branches []shared.Branch) { _ = "STUB: not implemented"; return }
 
-func runUnlock(branchNames []string, debug bool) {
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
-	defer stop()
-
-	connection := &conn.Connection{Debug: debug}
-
-	err := lock.UnlockBranches(ctx, branchNames, connection)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
-}
-
-func printBranches(branches []shared.Branch) {
-	if len(branches) == 0 {
-		fmt.Fprintf(color.Output, "%s\n",
-			hiBlack("  There are no branches in the current directory"))
-	}
-
-	for _, branch := range branches {
-		if branch.Head {
-			fmt.Fprintf(color.Output, "* %s", green(branch.Name))
-		} else {
-			fmt.Fprintf(color.Output, "  %s", branch.Name)
-		}
-
-		// Show worktree info for any branch with an associated worktree
-		if branch.Worktree != nil && !branch.Worktree.IsMain {
-			fmt.Fprintf(color.Output, " %s", hiBlack("(worktree: "+branch.Worktree.Path+")"))
-		}
-
-		reason := ""
-		if branch.State == shared.NotDeletable {
-			if branch.IsLocked {
-				reason = "locked"
-			} else if branch.Worktree != nil && branch.Worktree.IsLocked {
-				reason = "worktree locked"
-			} else if branch.Worktree != nil && branch.Worktree.IsMain && !branch.Head {
-				reason = "main worktree"
-			} else if branch.Worktree != nil && !branch.Worktree.IsMain && branch.Head {
-				reason = "worktree here"
-			} else if branch.Worktree != nil && branch.HasUntrackedFiles {
-				reason = "untracked files"
-			} else if !branch.IsDefault && len(branch.PullRequests) > 0 && branch.HasTrackedChanges {
-				reason = "uncommitted changes"
-			}
-		}
-		if reason == "" {
-			fmt.Fprintln(color.Output, "")
-		} else {
-			fmt.Fprintf(color.Output, " %s\n", hiBlack("["+reason+"]"))
-		}
-
-		for i, pr := range branch.PullRequests {
-			number := fmt.Sprintf("#%v", pr.Number)
-			issueNoColor := getIssueNoColor(pr.State, pr.IsDraft)
-			var line string
-			if i == len(branch.PullRequests)-1 {
-				line = "└─"
-			} else {
-				line = "├─"
-			}
-
-			fmt.Fprintf(color.Output, "    %s %s  %s %s\n",
-				line,
-				color.New(issueNoColor).SprintFunc()(number),
-				pr.Url,
-				hiBlack(pr.Author),
-			)
-		}
-	}
-}
+// Show worktree info for any branch with an associated worktree
 
 func getIssueNoColor(state shared.PullRequestState, isDraft bool) color.Attribute {
-	switch state {
-	case shared.Open:
-		if isDraft {
-			return color.FgHiBlack
-		} else {
-			return color.FgGreen
-		}
-	case shared.Merged:
-		return color.FgMagenta
-	case shared.Closed:
-		return color.FgRed
-	default:
-		return color.FgHiBlack
-	}
+	_ = "STUB: not implemented"
+	return *new(color.Attribute)
 }
 
 func getBranches(branches []shared.Branch, states []shared.BranchState) []shared.Branch {
-	results := []shared.Branch{}
-	for _, branch := range branches {
-		if slices.Contains(states, branch.State) {
-			results = append(results, branch)
-		}
-	}
-	return results
+	_ = "STUB: not implemented"
+	return nil
 }

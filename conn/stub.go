@@ -1,10 +1,6 @@
 package conn
 
 import (
-	"os"
-	"path/filepath"
-	"runtime"
-
 	"github.com/seachicken/gh-poi/mocks"
 	"go.uber.org/mock/gomock"
 )
@@ -72,219 +68,74 @@ var (
 	fixturePath = "fixtures"
 )
 
-func Setup(ctrl *gomock.Controller) *Stub {
-	conn := mocks.NewMockConnection(ctrl)
-	return &Stub{conn, ctrl.T}
-}
+func Setup(ctrl *gomock.Controller) *Stub { _ = "STUB: not implemented"; return nil }
 
-func NewConf(times *Times) *Conf {
-	return &Conf{
-		times,
-	}
-}
+func NewConf(times *Times) *Conf { _ = "STUB: not implemented"; return nil }
 
 func (s *Stub) GetRemoteNames(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			GetRemoteNames(gomock.Any()).
-			Return(s.ReadFile("git", "remote", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetSshConfig(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			GetSshConfig(gomock.Any(), gomock.Any()).
-			Return(s.ReadFile("ssh", "config", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetRepoNames(stubs []RepoNamesStub, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	for _, stub := range stubs {
-		configure(
-			s.Conn.
-				EXPECT().
-				GetRepoNames(gomock.Any(), gomock.Any(), stub.RepoName).
-				Return(s.ReadFile("gh", "repo", stub.Filename), err),
-			conf,
-		)
-	}
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetBranchNames(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.EXPECT().
-			GetBranchNames(gomock.Any()).
-			Return(s.ReadFile("git", "branch", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetMergedBranchNames(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.EXPECT().
-			GetMergedBranchNames(gomock.Any(), "origin", "main").
-			Return(s.ReadFile("git", "branchMerged", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetAssociatedRefNames(stubs []AssociatedBranchNamesStub, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	for _, stub := range stubs {
-		configure(
-			s.Conn.EXPECT().
-				GetAssociatedRefNames(gomock.Any(), stub.Oid).
-				Return(s.ReadFile("git", "abranch", stub.Filename), err),
-			conf,
-		)
-	}
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetLog(stubs []LogStub, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	for _, stub := range stubs {
-		configure(
-			s.Conn.EXPECT().
-				GetLog(gomock.Any(), stub.BranchName).
-				Return(s.ReadFile("git", "log", stub.Filename), err),
-			conf,
-		)
-	}
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetPullRequests(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			GetPullRequests(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).
-			Return(s.ReadFile("gh", "pr", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetUncommittedChanges(stubs []UncommittedChangeStub, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	for _, stub := range stubs {
-		if stub.Path == "" {
-			configure(
-				s.Conn.
-					EXPECT().
-					GetUncommittedChanges(gomock.Any()).
-					Return(stub.Output, err),
-				conf,
-			)
-		} else {
-			configure(
-				s.Conn.
-					EXPECT().
-					GetUncommittedChanges(gomock.Any(), "-C", stub.Path).
-					Return(stub.Output, err),
-				conf,
-			)
-		}
-	}
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *Stub) GetConfig(stubs []ConfigStub, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	for _, stub := range stubs {
-		configure(
-			s.Conn.
-				EXPECT().
-				GetConfig(gomock.Any(), stub.Key).
-				Return(s.ReadFile("git", "config", stub.Filename), err),
-			conf,
-		)
-	}
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *Stub) CheckoutBranch(err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			CheckoutBranch(gomock.Any(), gomock.Any(), gomock.Any()).
-			Return("", err),
-		conf,
-	)
-	return s
-}
+func (s *Stub) CheckoutBranch(err error, conf *Conf) *Stub { _ = "STUB: not implemented"; return nil }
 
-func (s *Stub) DeleteBranches(err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			DeleteBranches(gomock.Any(), gomock.Any()).
-			Return("", err),
-		conf,
-	)
-	return s
-}
+func (s *Stub) DeleteBranches(err error, conf *Conf) *Stub { _ = "STUB: not implemented"; return nil }
 
 func (s *Stub) GetWorktrees(filename string, err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			GetWorktrees(gomock.Any()).
-			Return(s.ReadFile("git", "worktree", filename), err),
-		conf,
-	)
-	return s
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *Stub) RemoveWorktree(err error, conf *Conf) *Stub {
-	s.T.Helper()
-	configure(
-		s.Conn.
-			EXPECT().
-			RemoveWorktree(gomock.Any(), gomock.Any()).
-			Return("", err),
-		conf,
-	)
-	return s
-}
+func (s *Stub) RemoveWorktree(err error, conf *Conf) *Stub { _ = "STUB: not implemented"; return nil }
 
-func configure(call *gomock.Call, conf *Conf) {
-	if conf == nil || conf.Times == nil {
-		call.AnyTimes()
-	} else {
-		call.Times(conf.Times.N)
-	}
-}
+func configure(call *gomock.Call, conf *Conf) { _ = "STUB: not implemented"; return }
 
 func (s *Stub) ReadFile(command string, category string, name string) string {
-	_, filename, _, _ := runtime.Caller(0)
-
-	ext := ".txt"
-	if command == "gh" {
-		ext = ".json"
-	}
-	b, err := os.ReadFile(filepath.Join(filename, "..", fixturePath, command, category+"_"+name+ext))
-	if err != nil {
-		s.T.Fatalf("%v", err)
-	}
-	return string(b)
+	_ = "STUB: not implemented"
+	return ""
 }

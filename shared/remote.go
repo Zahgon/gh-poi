@@ -7,9 +7,4 @@ type Remote struct {
 	GhResolved string
 }
 
-func (r Remote) ResolvedRepoName() string {
-	if len(r.GhResolved) > 1 && r.GhResolved != "base" {
-		return r.GhResolved
-	}
-	return r.RepoName
-}
+func (r Remote) ResolvedRepoName() string { _ = "STUB: not implemented"; return "" }
